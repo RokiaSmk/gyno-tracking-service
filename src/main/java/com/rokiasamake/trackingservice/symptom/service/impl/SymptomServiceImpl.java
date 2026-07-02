@@ -110,5 +110,18 @@ public class SymptomServiceImpl implements SymptomService {
 
         repository.save(symptom);
     }
+    @Override
+    public List<SymptomResponse> getMemberSymptoms(
+            UUID memberId) {
+
+        return repository
+                .findByMemberIdAndDeletedAtIsNullOrderByCreatedAtDesc(
+                        memberId
+                )
+                .stream()
+                .map(mapper::toResponse)
+                .toList();
+
+    }
 
 }

@@ -113,4 +113,18 @@ public class FoodJournalServiceImpl implements FoodJournalService {
         repository.save(journal);
     }
 
+    @Override
+    public List<FoodJournalResponse> getMemberFoodJournals(
+            UUID memberId) {
+
+        return repository
+                .findByMemberIdAndDeletedAtIsNullOrderByMealDateDesc(
+                        memberId
+                )
+                .stream()
+                .map(mapper::toResponse)
+                .toList();
+
+    }
+
 }

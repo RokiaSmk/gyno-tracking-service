@@ -29,5 +29,8 @@ public interface SymptomService {
             UUID memberId,
             UUID symptomId
     );
+    List<SymptomResponse> getMemberSymptoms(
+            UUID memberId
+    );
 
 }

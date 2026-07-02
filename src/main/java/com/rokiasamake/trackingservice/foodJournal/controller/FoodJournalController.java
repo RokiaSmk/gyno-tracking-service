@@ -89,4 +89,17 @@ public class FoodJournalController {
         );
     }
 
+    @GetMapping("/food-journal")
+    public ApiResponse<List<FoodJournalResponse>> getMemberFoodJournals(
+            HttpServletRequest request) {
+
+        return ApiResponse.success(
+                "Journal alimentaire récupéré avec succès.",
+                service.getMemberFoodJournals(
+                        currentUser.getMemberId(request)
+                )
+        );
+
+    }
+
 }

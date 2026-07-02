@@ -88,5 +88,17 @@ public class SymptomController {
                 null
         );
     }
+    @GetMapping("/symptoms")
+    public ApiResponse<List<SymptomResponse>> getMemberSymptoms(
+            HttpServletRequest request) {
+
+        return ApiResponse.success(
+                "Symptômes récupérés avec succès.",
+                service.getMemberSymptoms(
+                        currentUser.getMemberId(request)
+                )
+        );
+
+    }
 
 }

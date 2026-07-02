@@ -19,5 +19,7 @@ public interface FoodJournalRepository
             UUID memberId,
             UUID cycleId
     );
-
+    List<FoodJournal> findByMemberIdAndDeletedAtIsNullOrderByMealDateDesc(
+            UUID memberId
+    );
 }

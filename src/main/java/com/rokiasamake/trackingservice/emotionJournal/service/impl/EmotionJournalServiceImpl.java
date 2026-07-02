@@ -110,4 +110,17 @@ public class EmotionJournalServiceImpl implements EmotionJournalService {
 
         repository.save(journal);
     }
+    @Override
+    public List<EmotionJournalResponse> getMemberEmotionJournals(
+            UUID memberId) {
+
+        return repository
+                .findByMemberIdAndDeletedAtIsNullOrderByEmotionDateDesc(
+                        memberId
+                )
+                .stream()
+                .map(mapper::toResponse)
+                .toList();
+
+    }
 }

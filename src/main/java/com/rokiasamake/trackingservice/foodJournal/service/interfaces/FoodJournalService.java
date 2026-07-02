@@ -30,4 +30,8 @@ public interface FoodJournalService {
             UUID journalId
     );
 
+    List<FoodJournalResponse> getMemberFoodJournals(
+            UUID memberId
+    );
+
 }

@@ -19,5 +19,7 @@ public interface EmotionJournalRepository
             UUID memberId,
             UUID cycleId
     );
-
+    List<EmotionJournal> findByMemberIdAndDeletedAtIsNullOrderByEmotionDateDesc(
+            UUID memberId
+    );
 }

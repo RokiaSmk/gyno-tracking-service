@@ -88,4 +88,16 @@ public class EmotionJournalController {
                 null
         );
     }
+    @GetMapping("/emotion-journal")
+    public ApiResponse<List<EmotionJournalResponse>> getMemberEmotionJournals(
+            HttpServletRequest request) {
+
+        return ApiResponse.success(
+                "Journal émotionnel récupéré avec succès.",
+                service.getMemberEmotionJournals(
+                        currentUser.getMemberId(request)
+                )
+        );
+
+    }
 }

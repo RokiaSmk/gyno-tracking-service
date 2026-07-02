@@ -18,5 +18,9 @@ public interface SymptomRepository extends JpaRepository<Symptom, UUID> {
             UUID id,
             UUID memberId
     );
+    List<Symptom> findByMemberIdAndDeletedAtIsNullOrderByCreatedAtDesc(
+            UUID memberId
+    );
+
 
 }

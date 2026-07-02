@@ -29,5 +29,8 @@ public interface EmotionJournalService {
             UUID memberId,
             UUID journalId
     );
+    List<EmotionJournalResponse> getMemberEmotionJournals(
+            UUID memberId
+    );
 
 }
