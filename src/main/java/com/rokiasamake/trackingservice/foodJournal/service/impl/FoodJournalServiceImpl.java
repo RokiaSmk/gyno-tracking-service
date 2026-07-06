@@ -20,7 +20,8 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class FoodJournalServiceImpl implements FoodJournalService {
+public class FoodJournalServiceImpl
+        implements FoodJournalService {
 
     private final FoodJournalRepository repository;
     private final MenstrualCycleRepository cycleRepository;
@@ -34,7 +35,8 @@ public class FoodJournalServiceImpl implements FoodJournalService {
         MenstrualCycle cycle = cycleRepository
                 .findByIdAndMemberIdAndDeletedAtIsNull(
                         request.cycleId(),
-                        memberId)
+                        memberId
+                )
                 .orElseThrow(() ->
                         new CycleNotFoundException(
                                 "Cycle introuvable."
@@ -44,8 +46,7 @@ public class FoodJournalServiceImpl implements FoodJournalService {
                 .memberId(memberId)
                 .cycleId(cycle.getId())
                 .mealType(request.mealType())
-                .foodDescription(request.foodDescription())
-                .metabolicReaction(request.metabolicReaction())
+                .foodIds(request.foodIds())
                 .mealDate(request.mealDate())
                 .build();
 
@@ -78,15 +79,15 @@ public class FoodJournalServiceImpl implements FoodJournalService {
         FoodJournal journal = repository
                 .findByIdAndMemberIdAndDeletedAtIsNull(
                         journalId,
-                        memberId)
+                        memberId
+                )
                 .orElseThrow(() ->
                         new FoodJournalNotFoundException(
                                 "Journal alimentaire introuvable."
                         ));
 
         journal.setMealType(request.mealType());
-        journal.setFoodDescription(request.foodDescription());
-        journal.setMetabolicReaction(request.metabolicReaction());
+        journal.setFoodIds(request.foodIds());
         journal.setMealDate(request.mealDate());
 
         repository.save(journal);
@@ -102,7 +103,8 @@ public class FoodJournalServiceImpl implements FoodJournalService {
         FoodJournal journal = repository
                 .findByIdAndMemberIdAndDeletedAtIsNull(
                         journalId,
-                        memberId)
+                        memberId
+                )
                 .orElseThrow(() ->
                         new FoodJournalNotFoundException(
                                 "Journal alimentaire introuvable."
@@ -124,7 +126,6 @@ public class FoodJournalServiceImpl implements FoodJournalService {
                 .stream()
                 .map(mapper::toResponse)
                 .toList();
-
     }
 
 }

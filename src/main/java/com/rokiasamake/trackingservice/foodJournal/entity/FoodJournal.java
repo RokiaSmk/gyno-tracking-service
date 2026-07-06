@@ -7,6 +7,8 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -33,11 +35,14 @@ public class FoodJournal extends BaseEntity {
     @Column(nullable = false)
     private MealType mealType;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String foodDescription;
-
-    @Column(columnDefinition = "TEXT")
-    private String metabolicReaction;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(
+            name = "food_journal_items",
+            joinColumns = @JoinColumn(name = "journal_id")
+    )
+    @Column(name = "food_id")
+    @Builder.Default
+    private List<UUID> foodIds = new ArrayList<>();
 
     @Column(nullable = false)
     private LocalDate mealDate;

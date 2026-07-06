@@ -4,6 +4,7 @@ import com.rokiasamake.trackingservice.foodJournal.enums.MealType;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 public record FoodJournalResponse(
@@ -14,9 +15,7 @@ public record FoodJournalResponse(
 
         MealType mealType,
 
-        String foodDescription,
-
-        String metabolicReaction,
+        List<UUID> foodIds,
 
         LocalDate mealDate,
 
